@@ -42,8 +42,8 @@ public class TestExcel {
 		System.out.println("The property value is : "+prop.getProperty("excel_path"));
 
 		excelStream = new FileInputStream(new File(prop.getProperty("excel_path")));
-		XSSFWorkbook excelBook=new XSSFWorkbook(excelStream);
-		XSSFSheet sheet=null;
+		// XSSFWorkbook excelBook=new XSSFWorkbook(excelStream);
+		// XSSFSheet sheet=null;
 		
 		return masterList;
 	}

@@ -31,5 +31,5 @@ public class ArunCalculate {
 	private int subtract(int v, int w) {
 			int subValue=v-w;
 			return subValue;
-	}*/
+	}
 }
