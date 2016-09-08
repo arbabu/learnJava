@@ -26,6 +26,7 @@ push cahnges to server: git push -u origin master
 pull changes from the server : git pull 
 
 
+
 == Maven commands
 mvn clean install 
 mvn eclipse:eclipse
