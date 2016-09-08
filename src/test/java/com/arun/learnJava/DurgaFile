@@ -1,0 +1,95 @@
+package calculate;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Properties;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class TestExcel {
+	
+	Properties prop = new Properties();
+	FileInputStream propStream;
+	FileInputStream excelStream;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TestExcel te;		//object initialization -- te is the key handle to access the Obj
+		te= new TestExcel(); //Object instatiation -- This is where an obj is created
+		ArrayList dataList=te.ReadExcel();
+		
+		for(int m=0; m<dataList.size(); m++)
+		{
+			HashMap hm= (HashMap) dataList.get(m);
+			
+			System.out.println("Name : "+hm.get("NAME"));
+			System.out.println("EmpId : "+hm.get("EMPID"));
+			System.out.println("Age : "+hm.get("AGE"));
+			System.out.println("Alias : "+hm.get("ALIAS"));
+
+		}
+	}
+
+	public ArrayList ReadExcel() // throws FileNotFoundException
+	{
+		ArrayList masterList= new ArrayList();
+
+		try 
+		{	
+			//Read the property file as Input Stream and Load it as Properties
+			propStream = new FileInputStream("test.properties");
+			prop.load(propStream);
+			System.out.println("The property value is : "+prop.getProperty("excel_path"));
+			
+			excelStream = new FileInputStream(new File(prop.getProperty("excel_path")));
+			XSSFWorkbook excelBook=new XSSFWorkbook(excelStream);
+			XSSFSheet sheet=null;
+			
+			sheet=excelBook.getSheet("Sheet1");
+
+			System.out.println("Sheet LastRow -- > "+sheet.getLastRowNum());
+			ArrayList lvList= new ArrayList();
+			
+			for(int i=1; i<=sheet.getLastRowNum();i++)
+			{
+				System.out.println("No Of Columns -- > in row "+i+ "--> "+
+												sheet.getRow(i).getLastCellNum());
+				
+				for(int j=0; j<sheet.getRow(i).getLastCellNum(); j++)
+				{
+					String value = sheet.getRow(i).getCell(j).getStringCellValue();
+					System.out.println("The Value on Cell "+j+ "is --> "+value);
+					
+					lvList.add(value);
+				}
+				HashMap dataMap = new HashMap();
+				dataMap.put("EMPID", lvList.get(0));
+				dataMap.put("NAME", lvList.get(1));
+				dataMap.put("AGE", lvList.get(2));
+				dataMap.put("ALIAS", lvList.get(3));
+				masterList.add(dataMap);
+				
+				lvList.clear();
+			
+			}
+		}
+		catch (FileNotFoundException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				finally
+		{
+				return masterList;
+		}		
+	}
+}
