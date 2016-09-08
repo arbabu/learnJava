@@ -13,7 +13,7 @@ learnJava
         <version>3.8-beta4</version>
     </dependency>
 
-
+```javascript
 ==== Git commands ==
 To get fresh copy: git clone
 Check status: git status
@@ -34,6 +34,8 @@ mvn eclipse:eclipse
 
 
 =====
+```
+
 
 
 
