@@ -14,11 +14,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class StudMarkResult
 {
 	public static void main(String[] args) throws Exception {
-		
+		//writing into the excel sheet
 		FileOutputStream outStream = new FileOutputStream("C:/Users/daddyiscrybaby/Downloads/studmarkresult1.xlsx");
 		XSSFWorkbook outbook = new XSSFWorkbook();		
 		XSSFSheet outsheet = outbook.createSheet("Sheet1");
 
+		//reading the excel sheet
 		FileInputStream excelStream= new FileInputStream("C:/Users/daddyiscrybaby/Downloads/studmarkresult.xlsx");
 		XSSFWorkbook book = new XSSFWorkbook(excelStream);
 		XSSFSheet sheet = book.getSheet("Sheet1");
@@ -30,10 +31,10 @@ public class StudMarkResult
 		for (int i=1; i<=lastrownum; i++)
 		{
 			Row roww = sheet.getRow(i);
-			Row outrow = outsheet.createRow(i);
+			Row outrow = outsheet.createRow(i); //creating a new row in the new excel sheet to write the data
 			for (int j=0; j<roww.getLastCellNum(); j++){
-				Cell cellv = roww.getCell(j);
-				Cell outCell = outrow.createCell(j);
+				Cell cellv = roww.getCell(j); //getting the value for each cell
+				Cell outCell = outrow.createCell(j);//creating a cell in the new excel sheet to write the value
 				System.out.print(cellv.getStringCellValue()+ "  ");
 				
 				String strval = cellv.getStringCellValue();//Java offers an object(thats y starts with caps)String which captures the string value
@@ -43,8 +44,8 @@ public class StudMarkResult
 					int intval = Integer.parseInt(strval); //parses to give/convert the string to integer value
 					
 					if (intval<35.0)  {
-						//System.out.println("Mark is less than 35 for subject" + sheet.getRow(0).getCell(0).getStringCellValue());
-						subject= sheet.getRow(0).getCell(j).getStringCellValue();
+						//System.out.println("Mark is less than 35 for subject" + sheet.getRow(0).getCell(0).getStringCellValue()); //hardcoded
+						subject= sheet.getRow(0).getCell(j).getStringCellValue();//gives the subject name
 						result = "Fail";
 					}else {
 						subject = "";

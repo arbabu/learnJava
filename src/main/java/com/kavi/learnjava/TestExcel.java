@@ -1,5 +1,6 @@
-package calculate;
+package com.kavi.learnJava;
 
+//This is very good code and documented well for future references
 import java.io.File; //it is a class which represents file and directory path names
 
 import java.io.FileInputStream; //this class helps to read a file
@@ -13,11 +14,9 @@ import java.util.HashMap; //
 import java.util.Properties;  //
 
 
-
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 
 public class TestExcel {
@@ -28,7 +27,6 @@ FileInputStream propertyFileStream; /*to read property file u need a class calle
 
 FileInputStream excelFileStream; /*to read excel file u need a class called FileInputStream*/
 
-
 public static void main(String[] args) throws IOException {
 
 TestExcel te = new TestExcel();
@@ -36,13 +34,11 @@ TestExcel te = new TestExcel();
 ArrayList employeePrintList = te.ReadExcel();
 
 
-
 for(int m=0; m<employeePrintList.size(); m++)
 
 {
 
 HashMap hm= (HashMap) employeePrintList.get(m);
-
 
 System.out.println("Name : "+hm.get("NAME"));
 
@@ -53,7 +49,6 @@ System.out.println("Age : "+hm.get("AGE"));
 System.out.println("Alias : "+hm.get("ALIAS"));
 
 
-
 }
 
 }
@@ -62,7 +57,6 @@ private ArrayList ReadExcel() throws IOException {
 
 ArrayList employeeList= new ArrayList();
 
-
 // 1.Read the property file to get the Excel File name
 
 propertyFileStream = new FileInputStream("/Users/arunmozhibabu/Documents/workspace/learningSelenium/src/calculate/test.properties");
@@ -70,7 +64,6 @@ propertyFileStream = new FileInputStream("/Users/arunmozhibabu/Documents/workspa
 prop.load(propertyFileStream);
 
 System.out.println("The property value is : "+prop.getProperty("excel_path"));
-
 
 //2. Read excel spread sheet
 
@@ -85,7 +78,6 @@ sheet=excelBook.getSheet("Sheet1");*/
 //3. Dump into temporary array list tempList
 
 ArrayList tempList = new ArrayList();
-
 
 for(int i=1; i<=sheet1.getLastRowNum();i++) {
 
@@ -117,7 +109,6 @@ dataMap.put("ALIAS", tempList.get(3));
 
 employeeList.add(dataMap);
 
-
 tempList.clear();
 
 }
@@ -126,9 +117,7 @@ tempList.clear();
 
 return employeeList;
 
-
-
 }
 
 }
-
+	
