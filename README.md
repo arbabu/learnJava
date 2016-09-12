@@ -54,6 +54,10 @@ mvn eclipse:eclipse
       5. take screen shot while running screens
       
 
+Drivers:
+https://sites.google.com/a/chromium.org/chromedriver/downloads
+https://sites.google.com/a/chromium.org/chromedriver/getting-started
+
 ```
 
 
